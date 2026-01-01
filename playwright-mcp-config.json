@@ -6,7 +6,7 @@
     },
     "contextOptions": {
       "recordVideo": {
-        "dir": "./videos",
+        "dir": "/Users/Bek/Desktop/tac/tac-7/trees/4bda5323/videos",
         "size": {
           "width": 1920,
           "height": 1080
