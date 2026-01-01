@@ -1,0 +1,75 @@
+### Page state
+- Page URL: http://localhost:5173/
+- Page Title: Natural Language SQL Interface
+- Page Snapshot:
+```yaml
+- generic [ref=e3]:
+  - heading "Natural Language SQL Interface" [level=1] [ref=e4]
+  - generic [ref=e5]:
+    - textbox "Ask a question about your data... (e.g., 'Show me users who signed up last week')" [ref=e6]
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - button "Query" [ref=e9] [cursor=pointer]
+        - button "Upload" [active] [ref=e10] [cursor=pointer]
+      - button "Generate Random Query" [ref=e11] [cursor=pointer]
+  - generic [ref=e12]:
+    - heading "Available Tables" [level=3] [ref=e13]
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - generic [ref=e18]: users
+            - generic [ref=e19]: 20 rows, 6 columns
+          - generic [ref=e20]:
+            - button "📊 CSV" [ref=e21] [cursor=pointer]
+            - button "×" [ref=e22] [cursor=pointer]
+        - generic [ref=e23]:
+          - generic [ref=e24]: id🔢 INTEGER
+          - generic [ref=e25]: name📝 TEXT
+          - generic [ref=e26]: email📝 TEXT
+          - generic [ref=e27]: signup_date📝 TEXT
+          - generic [ref=e28]: age🔢 INTEGER
+          - generic [ref=e29]: city📝 TEXT
+      - generic [ref=e30]:
+        - generic [ref=e31]:
+          - generic [ref=e32]:
+            - generic [ref=e33]: products
+            - generic [ref=e34]: 32 rows, 6 columns
+          - generic [ref=e35]:
+            - button "📊 CSV" [ref=e36] [cursor=pointer]
+            - button "×" [ref=e37] [cursor=pointer]
+        - generic [ref=e38]:
+          - generic [ref=e39]: product_id🔢 INTEGER
+          - generic [ref=e40]: product_name📝 TEXT
+          - generic [ref=e41]: category📝 TEXT
+          - generic [ref=e42]: price💯 REAL
+          - generic [ref=e43]: stock_quantity🔢 INTEGER
+          - generic [ref=e44]: last_restocked📝 TEXT
+  - generic [ref=e46]:
+    - generic [ref=e47]:
+      - heading "Upload Data" [level=2] [ref=e48]
+      - button "×" [ref=e49] [cursor=pointer]
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - heading "Quick Start with Sample Data" [level=3] [ref=e52]
+        - generic [ref=e53]:
+          - button "👥 Users Data 20 users with signup dates" [ref=e54] [cursor=pointer]:
+            - generic [ref=e55]: 👥
+            - generic [ref=e56]:
+              - strong [ref=e57]: Users Data
+              - generic [ref=e58]: 20 users with signup dates
+          - button "📦 Product Inventory 32 products with prices" [ref=e59] [cursor=pointer]:
+            - generic [ref=e60]: 📦
+            - generic [ref=e61]:
+              - strong [ref=e62]: Product Inventory
+              - generic [ref=e63]: 32 products with prices
+          - button "📊 Event Analytics 10 events with nested data" [ref=e64] [cursor=pointer]:
+            - generic [ref=e65]: 📊
+            - generic [ref=e66]:
+              - strong [ref=e67]: Event Analytics
+              - generic [ref=e68]: 10 events with nested data
+      - generic [ref=e69]: or
+      - generic [ref=e70]:
+        - paragraph [ref=e71]: Drag and drop .csv, .json, or .jsonl files here
+        - button "Browse Files" [ref=e72] [cursor=pointer]
+```
