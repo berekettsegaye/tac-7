@@ -120,14 +120,83 @@ function initializeRandomQueryButton() {
 }
 
 // File Upload Functionality
+// Create drop overlay element
+function createDropOverlay(): HTMLDivElement {
+  const overlay = document.createElement('div');
+  overlay.className = 'drop-overlay';
+  overlay.textContent = 'Drop to create table';
+  return overlay;
+}
+
+// Add drag-and-drop handlers to an element
+function addDropZoneHandlers(element: HTMLElement) {
+  let dragCounter = 0;
+
+  element.addEventListener('dragenter', (e) => {
+    e.preventDefault();
+    dragCounter++;
+
+    if (dragCounter === 1) {
+      element.classList.add('drop-zone-active');
+
+      // Add overlay if it doesn't exist
+      if (!element.querySelector('.drop-overlay')) {
+        const overlay = createDropOverlay();
+        element.appendChild(overlay);
+      }
+    }
+  });
+
+  element.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  });
+
+  element.addEventListener('dragleave', (e) => {
+    e.preventDefault();
+    dragCounter--;
+
+    if (dragCounter === 0) {
+      element.classList.remove('drop-zone-active');
+
+      // Remove overlay
+      const overlay = element.querySelector('.drop-overlay');
+      if (overlay) {
+        overlay.remove();
+      }
+    }
+  });
+
+  element.addEventListener('drop', async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    dragCounter = 0;
+    element.classList.remove('drop-zone-active');
+    element.classList.remove('dragover');
+
+    // Remove overlay
+    const overlay = element.querySelector('.drop-overlay');
+    if (overlay) {
+      overlay.remove();
+    }
+
+    const files = e.dataTransfer?.files;
+    if (files && files.length > 0) {
+      handleFileUpload(files[0]);
+    }
+  });
+}
+
 function initializeFileUpload() {
   const dropZone = document.getElementById('drop-zone') as HTMLDivElement;
+  const sampleDataSection = document.querySelector('.sample-data-section') as HTMLElement;
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const browseButton = document.getElementById('browse-button') as HTMLButtonElement;
-  
+
   // Browse button click
   browseButton.addEventListener('click', () => fileInput.click());
-  
+
   // File input change
   fileInput.addEventListener('change', (e) => {
     const files = (e.target as HTMLInputElement).files;
@@ -135,26 +204,10 @@ function initializeFileUpload() {
       handleFileUpload(files[0]);
     }
   });
-  
-  // Drag and drop
-  dropZone.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    dropZone.classList.add('dragover');
-  });
-  
-  dropZone.addEventListener('dragleave', () => {
-    dropZone.classList.remove('dragover');
-  });
-  
-  dropZone.addEventListener('drop', async (e) => {
-    e.preventDefault();
-    dropZone.classList.remove('dragover');
-    
-    const files = e.dataTransfer?.files;
-    if (files && files.length > 0) {
-      handleFileUpload(files[0]);
-    }
-  });
+
+  // Add drag-and-drop handlers to both drop zones
+  addDropZoneHandlers(dropZone);
+  addDropZoneHandlers(sampleDataSection);
 }
 
 // Handle file upload
